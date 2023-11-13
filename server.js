@@ -25,7 +25,7 @@ const pool = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  port: process.env.PORT  
+  port: process.env.DB_PORT  
   
 });
 
@@ -38,7 +38,7 @@ port:8080
 */
 
 
-app.listen(3000, () => {
+app.listen(8080, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
 
