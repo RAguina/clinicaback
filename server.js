@@ -14,11 +14,11 @@ app.use(express.json());
 
 // Conexión a la base de datos
 const pool = new Pool({
-  host: 'localhost', //localhost
-  user: 'postgres',  //raguina
-  password: 'admin', //lalalala
-  database: 'db_clinicaap', //clinicaap
-  port: 5432
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 
