@@ -9,16 +9,15 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://raguina.github.io',
   credentials: true
 }));
 app.use(express.json());
 
-console.log('DB_HOST:', process.env.DB_HOST, typeof process.env.DB_HOST);
-console.log('DB_USER:', process.env.DB_USER, typeof process.env.DB_USER);
+
 // Conexión a la base de datos
 
-
+const port = process.env.DB_PORT || 3000;
 
 const pool = new Pool({
   
@@ -38,8 +37,9 @@ database:'db_clinicaap',
 port:8080
 */
 
+
 app.listen(3000, () => {
-  console.log('Servidor corriendo en http://localhost:3000');
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });
 
 // Función para formatear la fecha
