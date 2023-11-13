@@ -6,6 +6,9 @@ dotenv.config({path:'./.env'});
 const { Pool } = pkg;
 const app = express();
 
+// Define la constante con la URL del backend
+const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+
 
 // Middlewares
 app.use(cors({
@@ -18,15 +21,9 @@ app.use(express.json());
 // Conexión a la base de datos
 
 const port = process.env.DB_PORT;
-
+//dbURL
 const pool = new Pool({
-  
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT  
-  
+  connectionString: dbURL
 });
 
 /* 
