@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import pkg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config({path:'./.env'});
 const { Pool } = pkg;
 const app = express();
 
@@ -12,15 +14,29 @@ app.use(cors({
 }));
 app.use(express.json());
 
+console.log('DB_HOST:', process.env.DB_HOST, typeof process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER, typeof process.env.DB_USER);
 // Conexión a la base de datos
+
+
+
 const pool = new Pool({
+  
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT  
+  
 });
 
+/* 
+host:'localhost',
+user:'postgres',
+password:'admin',
+database:'db_clinicaap',
+port:8080
+*/
 
 app.listen(3000, () => {
   console.log('Servidor corriendo en http://localhost:3000');
