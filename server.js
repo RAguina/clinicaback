@@ -36,7 +36,7 @@ port:8080
 
 
 app.listen(8080, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Servidor corriendo en Puerto : ${port}`);
 });
 
 // Función para formatear la fecha
