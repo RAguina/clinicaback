@@ -12,7 +12,7 @@ const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${proc
 app.use(express.static('assets'));
 // Middlewares
 app.use(cors({
-  origin: 'https://raguina.github.io',
+  origin: ['https://raguina.github.io', 'http://localhost:5173'],
   credentials: true
 }));
 app.use(express.json());
