@@ -26,6 +26,9 @@ const pool = new Pool({
   connectionString: dbURL
 });
 
+app.listen(8080, () => {
+  console.log(`Servidor corriendo en Puerto : ${port}`);
+});
 /* 
 host:'localhost',
 user:'postgres',
@@ -35,9 +38,6 @@ port:8080
 */
 
 
-app.listen(8080, () => {
-  console.log(`Servidor corriendo en Puerto : ${port}`);
-});
 
 // Función para formatear la fecha
 function formatearFecha(fecha) {
@@ -48,6 +48,10 @@ function formatearFecha(fecha) {
   return `${dia}/${mes}/${ano}`;
 }
 
+// Configura rutas
+app.get('/', (req, res) => {
+  res.send('¡Hola, mundo!');
+});
 
 //Metodos GET (pacientes,medicos,turnos)
 // Crear una ruta para obtener todos los pacientes
