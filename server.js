@@ -1,8 +1,8 @@
 import express from 'express';
-import cors from 'cors';
+//import cors from 'cors';
 import pkg from 'pg';
-import dotenv from 'dotenv';
-dotenv.config({path:'./.env'});
+//import dotenv from 'dotenv';
+//dotenv.config({path:'./.env'});
 const { Pool } = pkg;
 const app = express();
 
@@ -44,15 +44,6 @@ const pool = new Pool({
 app.listen(8080, () => {
   console.log(`Servidor corriendo en Puerto : ${port}`);
 });
-/* 
-host:'localhost',
-user:'postgres',
-password:'admin',
-database:'db_clinicaap',
-port:8080
-*/
-
-
 
 // Función para formatear la fecha
 function formatearFecha(fecha) {
@@ -63,7 +54,7 @@ function formatearFecha(fecha) {
   return `${dia}/${mes}/${ano}`;
 }
 
-// Configura rutas
+// Configura rutas, Prueba
 app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
 });
