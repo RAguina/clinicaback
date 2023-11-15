@@ -12,7 +12,7 @@ const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${proc
 app.use(express.static('assets'));
 // Middlewares
 app.use(cors({
-  origin: ['https://raguina.github.io', 'http://localhost:5173', 'https://clinicaback-dev-rabz.2.us-1.fl0.io'],
+  origin: ['https://clinicaback-dev-rabz.2.us-1.fl0.io'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
