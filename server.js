@@ -11,11 +11,19 @@ const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${proc
 
 app.use(express.static('assets'));
 // Middlewares
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://raguina.github.io/clinicaAP/');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+})
+/*
 app.use(cors({
   origin: ['https://clinicaback-dev-rabz.2.us-1.fl0.io'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+*/
 /*
 app.use(cors({
   origin: ['https://raguina.github.io', 'http://localhost:5173'],
