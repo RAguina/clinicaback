@@ -41,14 +41,14 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors({
-  origin: ['https://raguina.github.io'],
+  origin: ['https://raguina.github.io/clinicaAP'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
 /*
 app.use(cors({
-  origin: ['https://raguina.github.io', 'http://localhost:5173'],
+  origin: ['https://raguina.github.io/', 'http://localhost:5173'],
   credentials: true
 }));
 */
@@ -63,9 +63,6 @@ const pool = new Pool({
   connectionString: dbURL
 });
 
-app.listen(port, () => {
-  console.log(`Servidor corriendo en Puerto : ${port}`);
-});
 
 // Función para formatear la fecha
 function formatearFecha(fecha) {
@@ -280,4 +277,6 @@ app.put('/turnos/:id', (req, res) => {
   });
 });
 
-
+app.listen(port, () => {
+  console.log(`Servidor corriendo en Puerto : ${port}`);
+});
