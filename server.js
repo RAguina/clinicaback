@@ -84,7 +84,7 @@ function formatearFecha(fecha) {
 
 // Configura rutas, Prueba
 app.get('/', (req, res) => {
-  res.send(dbUrl2);
+  res.send('El server esta online!, ruta root');
 });
 
 //Metodos GET (pacientes,medicos,turnos)
