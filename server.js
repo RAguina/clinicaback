@@ -13,6 +13,7 @@ app.use(express.static('assets'));
 
 
 // Middlewares
+/*
 const corsOptions = {
   origin: [
     'https://clinica-ap.vercel.app',
@@ -24,7 +25,9 @@ const corsOptions = {
   optionsSuccessStatus: 204,
   allowedHeaders: ['Content-Type', 'Authorization','Access-Control-Allow-Origin'],
 };
+
 app.use(cors(corsOptions))
+*/
 /*
 app.use(cors({
   origin: 'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app', // reemplaza con tu dominio
@@ -32,14 +35,14 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'], // reemplaza con tus encabezados
 }));
 */
-/*
+
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://raguina.github.io/clinicaAP/');
+  res.setHeader('Access-Control-Allow-Origin', 'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 })
-*/
+
 /*
 app.use((req, res, next) => {
   const allowedOrigins = ['https://raguina.github.io/', 'https://raguina.github.io', 'https://raguina.github.io/clinicaAP'];
