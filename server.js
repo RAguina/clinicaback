@@ -62,11 +62,11 @@ app.use(express.json());
 const port = process.env.PORT;
 //dbURL
 const pool = new Pool({
-  user: 'DB_USER',
-  host: 'DB_HOST',
-  database: 'DB_NAME',
-  password: 'DB_PASSWORD',
-  port: DB_PORT,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 /*const pool = new Pool({
   connectionString: dbURL
@@ -85,6 +85,9 @@ function formatearFecha(fecha) {
 // Configura rutas, Prueba
 app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
+  res.send(`Este es el puerto ${DB_PORT}`)
+  res.send(`Este no es el puerto ${process.env.DB_PORT}`)
+  res.send('Adios mundo cruel')
   res.send(`${dbUrl2}`)
 });
 
