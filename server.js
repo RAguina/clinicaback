@@ -37,9 +37,10 @@ app.use(cors({
 */
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'clinica-ef0ys4v04-rodrigos-projects-d06be1de.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', 'https://clinica-ap.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 })
 
@@ -82,9 +83,6 @@ app.use(express.json());
 
 
 // Conexión a la base de datos
-
-const port = process.env.PORT;
-//dbURL
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
