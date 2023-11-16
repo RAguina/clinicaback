@@ -8,7 +8,7 @@ const app = express();
 
 // Define la constante con la URL del backend
 const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=require`;
-
+console.log(dbURL);
 app.use(express.static('assets'));
 // Middlewares
 /*
