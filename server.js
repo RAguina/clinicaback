@@ -19,13 +19,26 @@ app.use((req, res, next) => {
   next();
 })
 */
+app.use((req, res, next) => {
+  const allowedOrigins = ['http://localhost:5173', 'https://raguina.github.io'];
+  const origin = req.headers.origin;
 
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  next();
+});
+/*
 app.use(cors({
   origin: ['https://raguina.github.io'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
+*/
 /*
 app.use(cors({
   origin: ['https://raguina.github.io', 'http://localhost:5173'],
