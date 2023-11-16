@@ -84,11 +84,7 @@ function formatearFecha(fecha) {
 
 // Configura rutas, Prueba
 app.get('/', (req, res) => {
-  res.send('¡Hola, 2 mundo!');
-  res.send(`Este es el puerto ${DB_PORT}`)
-  res.send(`Este no es el puerto ${process.env.DB_PORT}`)
-  res.send('Adios mundo cruel')
-  res.send(`${dbUrl2}`)
+  res.send(dbUrl2);
 });
 
 //Metodos GET (pacientes,medicos,turnos)
