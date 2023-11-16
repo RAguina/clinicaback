@@ -11,6 +11,12 @@ const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${proc
 const dbUrl2 = 'postgres://fl0user:3Hm0OMDcwCQU@ep-yellow-sun-67051456.us-east-2.aws.neon.fl0.io:5432/dbClinica?sslmode=require' 
 app.use(express.static('assets'));
 // Middlewares
+app.use(cors({
+  origin: 'https://raguina.github.io/clinicaAP/', // reemplaza con tu dominio
+  credentials: true,
+  methods: ['GET', 'POST', 'DELETE', 'PUT'], // reemplaza con tus métodos
+  allowedHeaders: ['Content-Type', 'Authorization'], // reemplaza con tus encabezados
+}));
 /*
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://raguina.github.io/clinicaAP/');
@@ -19,7 +25,7 @@ app.use((req, res, next) => {
   next();
 })
 */
-
+/*
 app.use((req, res, next) => {
   const allowedOrigins = ['https://raguina.github.io/', 'https://raguina.github.io', 'https://raguina.github.io/clinicaAP'];
   const origin = req.headers.origin;
@@ -34,7 +40,7 @@ app.use((req, res, next) => {
 
   next();
 });
-
+*/
 // Middleware para registrar información sobre solicitudes entrantes
 /*app.use((req, res, next) => {
   console.log('Solicitud entrante:', req.method, req.url);
