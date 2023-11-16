@@ -57,7 +57,7 @@ app.use(express.json());
 
 // Conexión a la base de datos
 
-const port = process.env.DB_PORT;
+const port = process.env.PORT;
 //dbURL
 const pool = new Pool({
   connectionString: dbURL
