@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   next();
 })
 */
-/*
+
 app.use((req, res, next) => {
   const allowedOrigins = ['http://localhost:5173/clinicaAP/', 'https://raguina.github.io', 'https://raguina.github.io/clinicaAP'];
   const origin = req.headers.origin;
@@ -34,18 +34,20 @@ app.use((req, res, next) => {
 
   next();
 });
-*/
+
 // Middleware para registrar información sobre solicitudes entrantes
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   console.log('Solicitud entrante:', req.method, req.url);
   next();
 });
+*/
+/*
 app.use(cors({
   origin: ['https://raguina.github.io/clinicaAP'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
+*/
 /*
 app.use(cors({
   origin: ['https://raguina.github.io/', 'http://localhost:5173'],
