@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 })
 */
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:5173', 'https://raguina.github.io'];
+  const allowedOrigins = ['http://localhost:5173', 'https://raguina.github.io', 'https://raguina.github.io/clinicaAP'];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
