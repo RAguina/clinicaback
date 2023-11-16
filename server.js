@@ -8,7 +8,7 @@ const app = express();
 
 // Define la constante con la URL del backend
 const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=require`;
-
+const dbUrl2 = 'postgres://fl0user:3Hm0OMDcwCQU@ep-yellow-sun-67051456.us-east-2.aws.neon.fl0.io:5432/dbClinica?sslmode=require' 
 app.use(express.static('assets'));
 // Middlewares
 /*
@@ -78,7 +78,7 @@ function formatearFecha(fecha) {
 // Configura rutas, Prueba
 app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
-  res.send(dbURL)
+  res.send(dbUrl2)
 });
 
 //Metodos GET (pacientes,medicos,turnos)
