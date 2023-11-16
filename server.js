@@ -10,13 +10,27 @@ const app = express();
 const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=require`;
 const dbUrl2 = 'postgres://fl0user:3Hm0OMDcwCQU@ep-yellow-sun-67051456.us-east-2.aws.neon.fl0.io:5432/dbClinica?sslmode=require' 
 app.use(express.static('assets'));
+
+
 // Middlewares
+const corsOptions = {
+  origin: [
+    'https://clinica-ap.vercel.app',
+    'https://clinica-ap-git-master-rodrigos-projects-d06be1de.vercel.app',
+    'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app'
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Habilita el intercambio de cookies a través de las solicitudes
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions))
+/*
 app.use(cors({
   origin: 'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app', // reemplaza con tu dominio
-  credentials: true,
   methods: ['GET', 'POST', 'DELETE', 'PUT'], // reemplaza con tus métodos
   allowedHeaders: ['Content-Type', 'Authorization'], // reemplaza con tus encabezados
 }));
+*/
 /*
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://raguina.github.io/clinicaAP/');
