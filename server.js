@@ -12,7 +12,7 @@ const dbUrl2 = 'postgres://fl0user:3Hm0OMDcwCQU@ep-yellow-sun-67051456.us-east-2
 app.use(express.static('assets'));
 // Middlewares
 app.use(cors({
-  origin: 'https://raguina.github.io/clinicaAP/', // reemplaza con tu dominio
+  origin: 'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app', // reemplaza con tu dominio
   credentials: true,
   methods: ['GET', 'POST', 'DELETE', 'PUT'], // reemplaza con tus métodos
   allowedHeaders: ['Content-Type', 'Authorization'], // reemplaza con tus encabezados
