@@ -37,7 +37,7 @@ app.use(cors({
 */
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://clinica-ap.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', 'clinica-ef0ys4v04-rodrigos-projects-d06be1de.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
