@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 */
 
 app.use(cors({
-  origin: ['https://raguina.github.io/clinicaAP'],
+  origin: ['https://raguina.github.io'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
