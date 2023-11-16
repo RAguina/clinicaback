@@ -78,7 +78,7 @@ function formatearFecha(fecha) {
 // Configura rutas, Prueba
 app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
-  res.send(dbUrl2)
+  res.send(`${dbUrl2}`)
 });
 
 //Metodos GET (pacientes,medicos,turnos)
