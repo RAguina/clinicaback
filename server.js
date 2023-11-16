@@ -22,7 +22,7 @@ const corsOptions = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Habilita el intercambio de cookies a través de las solicitudes
   optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization','Access-Control-Allow-Origin'],
 };
 app.use(cors(corsOptions))
 /*
