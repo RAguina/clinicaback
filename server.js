@@ -1,41 +1,15 @@
 import express from 'express';
-import cors from 'cors';
+//import cors from 'cors';
 import pkg from 'pg';
-//import dotenv from 'dotenv';
-//dotenv.config({path:'./.env'});
 const { Pool } = pkg;
 const app = express();
 
 // Define la constante con la URL del backend
 const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=require`;
-const dbUrl2 = 'postgres://fl0user:3Hm0OMDcwCQU@ep-yellow-sun-67051456.us-east-2.aws.neon.fl0.io:5432/dbClinica?sslmode=require' 
-app.use(express.static('assets'));
+//app.use(express.static('assets'));
 
 
 // Middlewares
-/*
-const corsOptions = {
-  origin: [
-    'https://clinica-ap.vercel.app',
-    'https://clinica-ap-git-master-rodrigos-projects-d06be1de.vercel.app',
-    'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app'
-  ],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Habilita el intercambio de cookies a través de las solicitudes
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'Authorization','Access-Control-Allow-Origin'],
-};
-
-app.use(cors(corsOptions))
-*/
-/*
-app.use(cors({
-  origin: 'https://clinica-93wx832g7-rodrigos-projects-d06be1de.vercel.app', // reemplaza con tu dominio
-  methods: ['GET', 'POST', 'DELETE', 'PUT'], // reemplaza con tus métodos
-  allowedHeaders: ['Content-Type', 'Authorization'], // reemplaza con tus encabezados
-}));
-*/
-
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -43,43 +17,7 @@ app.use((req, res, next) => {
   next();
 })
 
-/*
-app.use((req, res, next) => {
-  const allowedOrigins = ['https://raguina.github.io/', 'https://raguina.github.io', 'https://raguina.github.io/clinicaAP'];
-  const origin = req.headers.origin;
-
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  next();
-});
-*/
-// Middleware para registrar información sobre solicitudes entrantes
-/*app.use((req, res, next) => {
-  console.log('Solicitud entrante:', req.method, req.url);
-  next();
-});
-*/
-/*
-app.use(cors({
-  origin: ['https://raguina.github.io/clinicaAP'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
-*/
-/*
-app.use(cors({
-  origin: ['https://raguina.github.io/', 'http://localhost:5173'],
-  credentials: true
-}));
-*/
 app.use(express.json());
-
 
 // Conexión a la base de datos
 const pool = new Pool({
@@ -89,10 +27,6 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 });
-/*const pool = new Pool({
-  connectionString: dbURL
-});
-*/
 
 // Función para formatear la fecha
 function formatearFecha(fecha) {
@@ -150,8 +84,6 @@ app.get('/turnos', async (req, res) => {
   }
 });
 
-
-
 //Metodos DELETE (pacientes,medicos,turnos)
 // Crear una ruta para eliminar un paciente
 app.delete('/pacientes/:id', async (req, res) => {
@@ -169,7 +101,6 @@ app.delete('/pacientes/:id', async (req, res) => {
     res.status(500).send('Hubo un error al eliminar el paciente.');
   }
 });
-
 
 // Crear una ruta para eliminar un medico
 app.delete('/medicos/:id', async (req, res) => {
