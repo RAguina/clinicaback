@@ -9,6 +9,7 @@ const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${proc
 //app.use(express.static('assets'));
 
 
+app.use(express.json());
 // Middlewares
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,7 +18,6 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use(express.json());
 
 // Conexión a la base de datos
 const pool = new Pool({
@@ -27,9 +27,10 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
   ssl: { require:true, rejectUnauthorized: false },
-  sslmode: 'require'
 });
-
+app.listen(8080, () => {
+  console.log('Servidor corriendo en Puerto : 8080');
+});
 // Función para formatear la fecha
 function formatearFecha(fecha) {
   const fechaObj = new Date(fecha);
@@ -240,6 +241,4 @@ app.put('/turnos/:id', (req, res) => {
   });
 });
 
-app.listen(8080, () => {
-  console.log('Servidor corriendo en Puerto : 8080');
-});
+
