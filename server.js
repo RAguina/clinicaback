@@ -2,7 +2,7 @@ import express from 'express';
 import pg from 'pg';
 const { Pool } = pg;
 const app = express();
-
+//Desde branch 1.05
 app.use(express.json());
 // Middlewares
 app.use((req, res, next) => {
@@ -31,7 +31,7 @@ function formatearFecha(fecha) {
   const dia = String(fechaObj.getDate()).padStart(2, '0');
   const mes = String(fechaObj.getMonth() + 1).padStart(2, '0'); // Los meses en JavaScript comienzan desde 0
   const ano = fechaObj.getFullYear();
-  return `${dia}/${mes}/${ano}`;
+  return `${ano}/${mes}/${dia}`;
 }
 
 // Configura rutas, Prueba
