@@ -26,7 +26,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-  ssl: { require:true, rejectUnauthorized: false },
+  ssl: { require:true, rejectUnauthorized: false }
 });
 app.listen(8080, () => {
   console.log('Servidor corriendo en Puerto : 8080');
