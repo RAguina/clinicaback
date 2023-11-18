@@ -226,9 +226,10 @@ app.put('/medicos/:id', (req, res) => {
 app.put('/turnos/:id', (req, res) => {
   const { id } = req.params;
   const { fecha_turno, hora_turno, id_paciente, id_medico, estado, notas } = req.body;
-  
+  const fechaTurnoactualizada = formatearFecha(fecha_turno);
+
   let sql = `UPDATE turnos SET fecha_turno = $1, hora_turno = $2, id_paciente = $3, id_medico = $4, estado = $5, notas = $6 WHERE id = $7`;
-  let values = [fecha_turno, hora_turno, id_paciente, id_medico, estado, notas, id];
+  let values = [fechaTurnoactualizada, hora_turno, id_paciente, id_medico, estado, notas, id];
 
   pool.query(sql, values, (err, result) => {
     if (err) throw err;
