@@ -197,9 +197,10 @@ app.post('/turnos', async (req, res) => {
 app.put('/pacientes/:id', (req, res) => {
   const { id } = req.params;
   const { nombre, apellido, empresa, telefono, notas, obrasocial, fechanacimiento, email } = req.body;
-  
+  const fechaNacimientoFormateada = formatearFecha(fechanacimiento)
+
   let sql = `UPDATE pacientes SET nombre = $1, apellido = $2, empresa = $3, telefono = $4, notas = $5, obrasocial = $6, fechanacimiento = $7, email = $8 WHERE id = $9`;
-  let values = [nombre, apellido, empresa, telefono, notas, obrasocial, fechanacimiento, email, id];
+  let values = [nombre, apellido, empresa, telefono, notas, obrasocial, fechaNacimientoFormateada, email, id];
   
   pool.query(sql, values, (err, result) => {
     if (err) throw err;
@@ -211,9 +212,9 @@ app.put('/pacientes/:id', (req, res) => {
 app.put('/medicos/:id', (req, res) => {
   const { id } = req.params;
   const { nombre, apellido, especialidad, telefono, notas, obrasocial, fechanacimiento, email } = req.body;
-  
+  const fechaNacimientoFormateada = formatearFecha(fechanacimiento)
   let sql = `UPDATE medicos SET nombre = $1, apellido = $2, especialidad = $3, telefono = $4, notas = $5, obrasocial = $6, fechanacimiento = $7, email = $8 WHERE id = $9`;
-  let values = [nombre, apellido, especialidad, telefono, notas, obrasocial, fechanacimiento, email, id];
+  let values = [nombre, apellido, especialidad, telefono, notas, obrasocial, fechaNacimientoFormateada, email, id];
   
   pool.query(sql, values, (err, result) => {
     if (err) throw err;
