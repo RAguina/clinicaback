@@ -1,13 +1,7 @@
 import express from 'express';
-//import cors from 'cors';
 import pg from 'pg';
 const { Pool } = pg;
 const app = express();
-
-// Define la constante con la URL del backend
-const dbURL = `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?sslmode=require`;
-//app.use(express.static('assets'));
-
 
 app.use(express.json());
 // Middlewares
