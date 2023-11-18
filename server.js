@@ -1,7 +1,7 @@
 import express from 'express';
 //import cors from 'cors';
-import pkg from 'pg';
-const { Pool } = pkg;
+import pg from 'pg';
+const { Pool } = pg;
 const app = express();
 
 // Define la constante con la URL del backend
