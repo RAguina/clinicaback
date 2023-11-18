@@ -26,7 +26,8 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-  ssl: { require:true, rejectUnauthorized: false }
+  ssl: { require:true, rejectUnauthorized: false },
+  sslmode: 'require'
 });
 
 // Función para formatear la fecha
