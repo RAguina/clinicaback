@@ -88,13 +88,13 @@ app.delete('/pacientes/:id', async (req, res) => {
     
   try {
     // Desactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
-    await pool.query('ALTER TABLE turnos DROP CONSTRAINT IF EXISTS id_paciente;');
+    await pool.query('ALTER TABLE turnos DROP CONSTRAINT IF EXISTS turnos_id_paciente;');
       
     // Eliminar el paciente
     const result = await pool.query('DELETE FROM pacientes WHERE id = $1', [id]);
 
     // Reactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
-    await pool.query('ALTER TABLE turnos ADD CONSTRAINT id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id);');
+    await pool.query('ALTER TABLE turnos ADD CONSTRAINT turnos_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id);');
 
     if (result.affectedRows === 0) {
       res.status(404).send(`No se encontró un paciente con id ${id}.`);
