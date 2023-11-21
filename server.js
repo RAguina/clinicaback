@@ -86,22 +86,27 @@ app.get('/turnos', async (req, res) => {
 app.delete('/pacientes/:id', async (req, res) => {
   const { id } = req.params;
     
-    try {
-      // Llamar a la función para desactivar la restricción externa
-      await axios.post(`${apiUrl}/desactivar-restriccion-externa`);
+  try {
+    // Desactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
+    await pool.query('ALTER TABLE turnos DROP CONSTRAINT IF EXISTS turnos_id_paciente;');
+      
+    // Eliminar el paciente
+    const result = await pool.query('DELETE FROM pacientes WHERE id = $1', [id]);
 
-      // Eliminar el paciente
-      await pool.query('DELETE FROM pacientes WHERE id = $1', [id]);
+    // Reactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
+    await pool.query('ALTER TABLE turnos ADD CONSTRAINT id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id);');
 
-      res.status(200).json({ mensaje: 'Paciente eliminado exitosamente.' });
+    if (result.affectedRows === 0) {
+      res.status(404).send(`No se encontró un paciente con id ${id}.`);
+    } else {
+      res.send(`Paciente con id ${id} eliminado.`);
+    }
   } catch (error) {
-      console.error('Error al eliminar el paciente:', error);
-      res.status(500).json({ error: 'Error interno del servidor.' });
-  } finally {
-      // Reactivar la restricción de clave externa después de eliminar el paciente
-      await axios.post(`${apiUrl}/activar-restriccion-externa`);
+    console.error('Error al eliminar el paciente:', error);
+    res.status(500).send('Hubo un error al eliminar el paciente.');
   }
 });
+
 
 // Crear una ruta para eliminar un medico
 app.delete('/medicos/:id', async (req, res) => {
