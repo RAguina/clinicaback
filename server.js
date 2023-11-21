@@ -85,17 +85,21 @@ app.get('/turnos', async (req, res) => {
 // Crear una ruta para eliminar un paciente
 app.delete('/pacientes/:id', async (req, res) => {
   const { id } = req.params;
-  const sql = `DELETE FROM pacientes WHERE id = ${id}`;
-  try {
-    const result = await pool.query(sql);
-    if (result.affectedRows === 0) {
-      res.status(404).send(`No se encontró un paciente con id ${id}.`);
-    } else {
-      res.send(`Paciente con id ${id} eliminado.`);
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Hubo un error al eliminar el paciente.');
+    
+    try {
+      // Llamar a la función para desactivar la restricción externa
+      await axios.post(`${apiUrl}/desactivar-restriccion-externa`);
+
+      // Eliminar el paciente
+      await pool.query('DELETE FROM pacientes WHERE id = $1', [id]);
+
+      res.status(200).json({ mensaje: 'Paciente eliminado exitosamente.' });
+  } catch (error) {
+      console.error('Error al eliminar el paciente:', error);
+      res.status(500).json({ error: 'Error interno del servidor.' });
+  } finally {
+      // Reactivar la restricción de clave externa después de eliminar el paciente
+      await axios.post(`${apiUrl}/activar-restriccion-externa`);
   }
 });
 
@@ -238,3 +242,28 @@ app.put('/turnos/:id', (req, res) => {
 });
 
 
+  //Desactivar restricciones externes
+//Pacientes
+// Descripción: Desactiva temporalmente la restricción de clave externa
+app.post('/desactivar-restriccion-externa', async (req, res) => {
+  try {
+      // Desactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
+      await pool.query('ALTER TABLE turnos DROP CONSTRAINT id_paciente;');
+      res.status(200).json({ mensaje: 'Restricción externa desactivada exitosamente.' });
+  } catch (error) {
+      console.error('Error al desactivar restricción externa:', error);
+      res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+// Descripción: Reactiva la restricción de clave externa
+app.post('/activar-restriccion-externa', async (req, res) => {
+  try {
+      // Reactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
+      await pool.query('ALTER TABLE turnos ADD CONSTRAINT fk_turnos_pacientes FOREIGN KEY (id_paciente) REFERENCES pacientes(id);');
+      res.status(200).json({ mensaje: 'Restricción externa activada exitosamente.' });
+  } catch (error) {
+      console.error('Error al activar restricción externa:', error);
+      res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
