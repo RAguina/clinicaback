@@ -248,11 +248,15 @@ app.put('/turnos/:id', (req, res) => {
 app.post('/desactivar-restriccion-externa', async (req, res) => {
   try {
       // Desactivar la restricción de clave externa en la columna 'id_paciente' de la tabla 'turnos'
-      await pool.query('ALTER TABLE turnos DROP CONSTRAINT id_paciente;');
+      await pool.query('ALTER TABLE turnos DROP CONSTRAINT IF EXISTS turnos_id_paciente;');
+      
+      // Desactivar la restricción de clave externa en la columna 'id_medico' de la tabla 'turnos'
+      await pool.query('ALTER TABLE turnos DROP CONSTRAINT IF EXISTS turnos_id_medico;');
+      
       res.status(200).json({ mensaje: 'Restricción externa desactivada exitosamente.' });
   } catch (error) {
       console.error('Error al desactivar restricción externa:', error);
-      res.status(500).json({ error: 'Error interno del servidor.' });
+      res.status(500).json({ error: 'Error interno del servidor.', detalle: error.message });
   }
 });
 
