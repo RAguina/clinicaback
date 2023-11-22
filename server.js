@@ -102,7 +102,7 @@ app.delete('/pacientes/:id', async (req, res) => {
       res.send(`Paciente con id ${id} eliminado.`);
     }
   } catch (error) {
-    console.error('Error al eliminar el paciente:', error);
+    console.error('Error al eliminar el paciente:', error.message);
     res.status(500).send('Hubo un error al eliminar el paciente.');
   }
 });
